@@ -1,4 +1,4 @@
-_## About Log Viewer
+## About Log Viewer
 
 This is Laravel/vue modular application helps you to view your log file in web a page. 
 
