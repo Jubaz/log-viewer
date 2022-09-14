@@ -2,6 +2,10 @@
 
 This is Laravel/vue modular application helps you to view your log file in web a page. 
 
+## Requirements
+
+PHP version 8.1 and NPM version 8.x 
+
 
 ## Installation 
 
@@ -14,4 +18,4 @@ This is Laravel/vue modular application helps you to view your log file in web a
 - php artisan serve
 
 
-You can run tests with "./vendor/bin/phpunit" command 
+You can run tests with "php artisan test" command 
