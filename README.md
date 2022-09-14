@@ -10,7 +10,7 @@ This is Laravel/vue modular application helps you to view your log file in web a
 - composer install
 - cp .env.example .env
 - php artisan key:generate
-- npm install && npm run dev
+- npm install && npm run build
 - php artisan serve
 
 
