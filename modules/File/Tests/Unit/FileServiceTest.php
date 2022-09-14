@@ -38,14 +38,14 @@ class FileServiceTest extends TestCase
     {
         $lines = $this->fileService->readLines($this->filePath, 10, 1);
 
-        $this->assertEquals($this->fileLines[1], $lines[0]);
+        $this->assertEquals($this->fileLines[1], array_values($lines)[0]);
     }
 
     public function test_returns_the_last_line_only()
     {
         $lines = $this->fileService->readLines($this->filePath, 10, count($this->fileLines) - 1);
 
-        $this->assertEquals(end($this->fileLines), $lines[0]);
+        $this->assertEquals(end($this->fileLines), array_values($lines)[0]);
     }
 
     public function test_it_throw_exception_if_file_not_exists()
@@ -60,6 +60,13 @@ class FileServiceTest extends TestCase
         $this->expectException(FileNotFoundException::class);
 
         $this->fileService->readLines('/', 1);
+    }
+
+    public function test_it_should_return_lines_count()
+    {
+        $count = $this->fileService->getCountOfLines($this->filePath);
+
+        $this->assertEquals(count($this->fileLines) , $count + 1);
     }
 
     private function createFakeLogFile()
