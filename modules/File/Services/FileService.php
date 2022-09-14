@@ -11,9 +11,7 @@ class FileService
     {
         $lines = [];
 
-        if (!is_file($filePath)) {
-            throw new FileNotFoundException($filePath);
-        }
+        $this->fileExists($filePath);
 
         $file = new SplFileObject($filePath);
 
@@ -23,7 +21,7 @@ class FileService
             if ($line == false) {
                 break;
             }
-            $lines[] = str_replace("\n", "", $file->current());
+            $lines[$offset + 1] = str_replace("\n", "", $file->current());
             $offset++;
             $limit--;
         }
@@ -31,6 +29,31 @@ class FileService
         $file = null;
 
         return $lines;
+    }
+
+    public function getCountOfLines(string $filePath): int
+    {
+        $this->fileExists($filePath);
+
+        $file = fopen($filePath, 'rb');
+
+        $lines = 0;
+
+        while (!feof($file)) {
+            $lines += substr_count(fread($file, 8192), "\n");
+        }
+
+        fclose($file);
+
+        return $lines;
+    }
+
+
+    private function fileExists(string $filePath)
+    {
+        if (!is_file($filePath)) {
+            throw new FileNotFoundException($filePath);
+        }
     }
 
 }

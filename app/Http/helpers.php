@@ -8,3 +8,10 @@ if (!function_exists('registeredModules')) {
         ];
     }
 }
+
+if (!function_exists('ApiV1Prefix')) {
+    function ApiV1Prefix()
+    {
+        return 'V1';
+    }
+}
